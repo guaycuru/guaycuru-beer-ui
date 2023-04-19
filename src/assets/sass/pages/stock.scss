@@ -1,0 +1,131 @@
+@use "../sass-utils/variaveis" as v;
+@use "../sass-utils/mixins" as m;
+
+* {
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  margin: 2rem 0;
+
+  table {
+    border-collapse: collapse;
+    width: 90vw;
+    text-align: center;
+    box-shadow: 5px 8px 8px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+
+    thead {
+      tr {
+        background-color: v.$carmine;
+
+        th {
+          font-weight: 700;
+
+          padding: 1rem;
+          font-size: 1.2rem;
+          color: white;
+          border: solid 1px lightgray;
+
+          &:last-child {
+            width: 1%;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        border-top: 1px solid #ddd;
+
+        &:nth-child(even) {
+          background-color: #f8f8f8;
+        }
+
+        &:hover {
+          background-color: #eaeaea;
+        }
+
+        td {
+          padding: 1rem;
+          border: solid 1px lightgray;
+
+          &:last-child {
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    @media (max-width: m.$breakpoint-small) {
+      thead {
+        display: none;
+      }
+
+      tbody {
+        tr {
+          display: flex;
+          flex-wrap: wrap;
+          border-top: none;
+
+          &:nth-child(even) {
+            background-color: transparent;
+          }
+
+          td {
+            width: 100%;
+            padding: 0.5rem;
+            border-top: 1px solid #ddd;
+            text-align: center;
+
+            &:before {
+              content: attr(data-th) ": ";
+              font-weight: 700;
+              display: block;
+              text-align: left;
+            }
+
+            &:last-child {
+              border-top: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.beber_button {
+  max-width: 1000px;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  background-color: v.$dark-orange-web;
+  cursor: pointer;
+  font-weight: 600;
+  &:hover {
+    color: white;
+    background-color: v.$alloy-orange;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.265);
+    transform: scale(1.1);
+    border: solid 1px v.$dark-orange-web;
+  }
+}
+
+.col_cerveja {
+  width: 30%;
+}
+
+.col_estilo {
+  width: 30%;
+}
+
+.col_validade {
+  width: 25%;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
