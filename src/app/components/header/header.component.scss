@@ -1,0 +1,51 @@
+@use "/src/assets/sass/sass-utils/variaveis" as v;
+
+.header_logo_img {
+  display: block;
+  width: clamp(15rem, 30vw, 70rem);
+  margin-inline: auto;
+}
+
+.header_container {
+  background-color: v.$rosewood;
+
+  .header_wrapper {
+    width: 90%;
+    max-width: 1280px;
+    margin: auto;
+  }
+
+  .main-navigation {
+    color: white;
+    font-weight: 600;
+    align-items: center;
+    display: flex;
+    list-style: none;
+    padding-block: 1rem;
+    cursor: pointer;
+    justify-content: space-between;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    li {
+      font-size: 1.3rem;
+      color: white;
+      padding-bottom: 0.2rem;
+      background: linear-gradient(90deg, v.$orange-web 50%, #000 0)
+          calc(100% - var(--_p, 0%)) / 200% 100%,
+        linear-gradient(v.$orange-web 0 0) 0% 100% / var(--_p, 0%) 0.1rem
+          no-repeat;
+      -webkit-background-clip: text, padding-box;
+      background-clip: text, padding-box;
+      transition: 0.5s;
+
+      &:hover {
+        --_p: 100%;
+        color: wheat;
+      }
+    }
+  }
+}
