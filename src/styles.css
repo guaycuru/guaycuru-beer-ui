@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@media(min-width:768px) {
+  #toast-container.toast-top-center .ngx-toastr,
+  #toast-container.toast-bottom-center .ngx-toastr {
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.date-range-picker {
+  min-width: 250px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
