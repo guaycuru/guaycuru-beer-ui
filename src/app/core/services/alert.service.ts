@@ -27,22 +27,22 @@ export class AlertService {
     let message: string;
     let details: string[];
 
-    if(error) {
-      if(typeof error === 'string') {
+    if (error) {
+      if (typeof error === 'string') {
         message = error;
-      } else if(error instanceof UnauthorizedError) {
+      } else if (error instanceof UnauthorizedError) {
         message = "You are not authorized to perform the requested action.";
-      } else if(error.message) {
+      } else if (error.message) {
         message = error.message;
         details = error.details;
       }
     }
 
-    if(!message) {
+    if (!message) {
       message = title;
     }
 
-    if(details?.length > 0) {
+    if (details?.length > 0) {
       message += '<ul>';
       details.forEach(detail => message += `<li>${detail}</li>`);
       message += '</ul>';

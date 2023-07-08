@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   loginAs(userUuid: string): void {
-    if(AuthService.USER_TOKENS.hasOwnProperty(userUuid)) {
+    if (AuthService.USER_TOKENS.hasOwnProperty(userUuid)) {
       this.setBearerToken(AuthService.USER_TOKENS[userUuid]);
       this.setUserUuid(userUuid);
     }

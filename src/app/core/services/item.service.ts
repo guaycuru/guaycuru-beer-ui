@@ -30,7 +30,7 @@ export class ItemService {
   findItems(brandUuid: string): Observable<Item[]> {
     const options: any = {};
     options.params = new HttpParams();
-    if(brandUuid) {
+    if (brandUuid) {
       options.params = options.params.set('brand', brandUuid);
     }
     return this.http.get<ItemJSON[]>(this.config.apiBaseUrl + '/items/', options).pipe(

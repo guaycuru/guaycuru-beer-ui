@@ -62,7 +62,7 @@ export class ServerEnum<T> {
   rawValue: string;
 
   constructor(type: any, value?: T) {
-    if(value !== null) {
+    if (value !== null) {
       this.rawValue = type[value];
       this.matched = value;
     } else {
@@ -104,7 +104,7 @@ export class ServerEnum<T> {
    * @return true if it matches, false otherwise
    */
   equals(other: ServerEnum<T>): boolean {
-    if(other === null) {
+    if (other === null) {
       return false;
     }
 

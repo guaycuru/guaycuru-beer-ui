@@ -43,11 +43,11 @@ export class AuthHttp {
     };
 
     let httpOptions = Object.assign(defaultOptions, options);
-    if(body) {
+    if (body) {
       httpOptions.body = body;
     }
 
-    if(!httpOptions.headers.has('Content-Type')) {
+    if (!httpOptions.headers.has('Content-Type')) {
       httpOptions.headers = httpOptions.headers.set('Content-Type', 'application/json');
     }
 

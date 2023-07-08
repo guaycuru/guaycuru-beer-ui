@@ -4,12 +4,12 @@ import { Observable, throwError } from 'rxjs';
 export class Errors {
 
   static handleErrorResponse(rsp: HttpErrorResponse): Observable<any> {
-    if(rsp instanceof Error) {
+    if (rsp instanceof Error) {
       console.error(rsp);
       return throwError(rsp as Error);
     }
 
-    if(rsp.error instanceof ErrorEvent) {
+    if (rsp.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error(rsp.error);
       return throwError(rsp.error);
@@ -17,26 +17,26 @@ export class Errors {
       let httpErr: HttpError;
       // Treat status code 401 or 0 as Unauthenticated to work around a bug in IE10.
       // See: https://stackoverflow.com/questions/16081267
-      if(rsp.status === 401 || rsp.status === 0) {
+      if (rsp.status === 401 || rsp.status === 0) {
         httpErr = new UnauthenticatedError();
-      } else if(rsp.status === 403) {
+      } else if (rsp.status === 403) {
         httpErr = new UnauthorizedError();
-      } else if(rsp.status === 400) {
+      } else if (rsp.status === 400) {
         httpErr = new BadRequestError();
-      } else if(rsp.status === 422) {
+      } else if (rsp.status === 422) {
         httpErr = new UnprocessableEntityError();
-      } else if(rsp.status === 409) {
+      } else if (rsp.status === 409) {
         httpErr = new ConflictError();
-      } else if(rsp.status === 429) {
+      } else if (rsp.status === 429) {
         httpErr = new TooManyRequestsError();
-      } else if(rsp.status === 404) {
+      } else if (rsp.status === 404) {
         httpErr = new NotFoundError();
       } else {
         httpErr = new HttpError(rsp.status, "Unexpected error");
       }
 
       // If the response contains a JSON body, parse it as a structured error response
-      if(rsp.headers.get('content-type') === 'application/json' && typeof rsp.error == 'object') {
+      if (rsp.headers.get('content-type') === 'application/json' && typeof rsp.error == 'object') {
         httpErr.message = rsp.error.message;
         httpErr.code = rsp.error.code;
         httpErr.details = rsp.error.details;

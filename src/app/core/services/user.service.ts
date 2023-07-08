@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http: AuthHttp, private config: ConfigService, private localStorageService: LocalStorageService) {
     const userUuid = this.localStorageService.getUserUuid();
-    if(userUuid) {
+    if (userUuid) {
       this.refreshCurrentUser(userUuid);
     }
   }
@@ -37,9 +37,9 @@ export class UserService {
   }
 
   private setCurrentUser(user: User) {
-    if(user !== this.currentUser.getValue()) {
+    if (user !== this.currentUser.getValue()) {
       this.currentUser.next(user);
-      if(user) {
+      if (user) {
         this.localStorageService.setUserUuid(user.uuid);
       } else
         this.localStorageService.clearUserUuid();

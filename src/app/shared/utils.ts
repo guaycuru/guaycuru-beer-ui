@@ -14,7 +14,7 @@ export abstract class Utils {
     // We want the dateRangePicker's input format to change based on locale
     const locale = DateTime.now().locale.toLowerCase();
 
-    if(locale === 'es-us' || locale === 'es-mx' || locale === 'pt-br') {
+    if (locale === 'es-us' || locale === 'es-mx' || locale === 'pt-br') {
       return 'DD/MM/YYYY';
     } else {
       return 'MM/DD/YYYY';
@@ -25,7 +25,7 @@ export abstract class Utils {
     // We want the dateRangePicker's input format to change based on locale
     const locale = DateTime.now().locale.toLowerCase();
 
-    if(locale === 'es-us' || locale === 'es-mx' || locale === 'pt-br') {
+    if (locale === 'es-us' || locale === 'es-mx' || locale === 'pt-br') {
       return 'DD/MM/YYYY H:mm:ss';
     } else {
       return 'MM/DD/YYYY h:mm:ss a';
@@ -33,7 +33,7 @@ export abstract class Utils {
   }
 
   static ensureEnumKey<T>(type: any, key: T|string): T {
-    if(typeof key === 'string') {
+    if (typeof key === 'string') {
       return type[key];
     } else {
       return key;
