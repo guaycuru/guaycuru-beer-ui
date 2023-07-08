@@ -59,7 +59,7 @@ export class AuthHttp {
     let httpOptions = this._craftHttpOptions(body, options);
     response = this.http.request<R>(method, url, httpOptions) as Observable<HttpResponse<R>>;
     return response.pipe(
-      map(res => res.body)
+      map(res => res.body as R)
     );
   }
 }

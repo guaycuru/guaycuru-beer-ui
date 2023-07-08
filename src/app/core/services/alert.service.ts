@@ -42,7 +42,7 @@ export class AlertService {
       message = title;
     }
 
-    if(details && details.length > 0) {
+    if(details?.length > 0) {
       message += '<ul>';
       details.forEach(detail => message += `<li>${detail}</li>`);
       message += '</ul>';

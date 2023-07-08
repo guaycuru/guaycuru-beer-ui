@@ -5,7 +5,7 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class AuthService {
-  private static readonly USER_TOKENS = {
+  private static readonly USER_TOKENS: { [key: string]: string } = {
     '9f84099f-5316-11ed-a2eb-3c7c3f299a76': 'cd7205c0-5316-11ed-a2eb-3c7c3f299a76' // Admin
   }
 

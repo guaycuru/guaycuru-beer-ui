@@ -25,6 +25,10 @@ export class LocalStorageService {
     localStorage.setItem(LocalStorageService.USER_UUID_KEY, userUuid);
   }
 
+  clearUserUuid(): void {
+    localStorage.removeItem(LocalStorageService.USER_UUID_KEY);
+  }
+
   clearAll(): void {
     localStorage.clear();
   }

@@ -42,7 +42,7 @@ export class UserService {
       if(user) {
         this.localStorageService.setUserUuid(user.uuid);
       } else
-        this.localStorageService.setUserUuid(null);
+        this.localStorageService.clearUserUuid();
     }
   }
 
