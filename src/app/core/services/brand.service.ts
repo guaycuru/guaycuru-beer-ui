@@ -11,10 +11,16 @@ export class BrandService {
   constructor(private http: AuthHttp, private config: ConfigService) {
   }
 
-  findBrands(labels: boolean, ips: boolean, tags: boolean): Observable<Brand[]> {
-    const body = JSON.stringify({ labels, ips, tags });
-    return this.http.post<BrandJSON[]>(this.config.apiBaseUrl + "/brands", body).pipe(
+  listBrands(): Observable<Brand[]> {
+    return this.http.get<BrandJSON[]>(this.config.apiBaseUrl + "/brands").pipe(
       map(res => res.map(json => Brand.fromJSON(json))),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
+
+  getBrand(uuid: string): Observable<Brand> {
+    return this.http.get<BrandJSON>(this.config.apiBaseUrl + '/brands/' + uuid).pipe(
+      map(res => Brand.fromJSON(res)),
       catchError(Errors.handleErrorResponse)
     );
   }
