@@ -11,7 +11,8 @@ export class AppComponent {
   title = 'guaybeer-ui';
 
   constructor(private authService: AuthService, private userService: UserService) {
-    this.authService.loginAs('9f84099f-5316-11ed-a2eb-3c7c3f299a76'); // Admin
+    this.authService.loginAs('af9c4c2d-1aab-11ee-aab2-3c7c3f299a76'); // Felipe
+    //this.authService.loginAs('14e03311-21cc-11ee-88ae-ac1f6bbcd3b3'); // Kaue
     //this.authService.logout(); // Not logged in
     this.userService.refreshCurrentUser(this.authService.getUserUuid());
   }
