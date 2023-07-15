@@ -59,7 +59,7 @@ export class ItemService {
 
   deleteItem(item: Item): Observable<boolean> {
     return this.http.delete(this.config.apiBaseUrl + '/items/' + item.uuid).pipe(
-      map(res => true),
+      map(() => true),
       catchError(Errors.handleErrorResponse)
     );
   }

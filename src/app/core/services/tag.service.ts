@@ -25,4 +25,11 @@ export class TagService {
       catchError(Errors.handleErrorResponse)
     );
   }
+
+  deleteTag(uuid: string): Observable<boolean> {
+    return this.http.delete(this.config.apiBaseUrl + '/tags/' + uuid).pipe(
+      map(() => true),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
 }

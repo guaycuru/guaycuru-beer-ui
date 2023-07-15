@@ -24,4 +24,11 @@ export class BrandService {
       catchError(Errors.handleErrorResponse)
     );
   }
+
+  deleteBrand(uuid: string): Observable<boolean> {
+    return this.http.delete(this.config.apiBaseUrl + '/brands/' + uuid).pipe(
+      map(() => true),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
 }

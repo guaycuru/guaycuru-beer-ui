@@ -25,4 +25,11 @@ export class ProductService {
       catchError(Errors.handleErrorResponse)
     );
   }
+
+  deleteProduct(uuid: string): Observable<boolean> {
+    return this.http.delete(this.config.apiBaseUrl + '/products/' + uuid).pipe(
+      map(() => true),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
 }
