@@ -5,8 +5,10 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class AuthService {
+  // ToDo: Remove
   private static readonly USER_TOKENS: { [key: string]: string } = {
-    '9f84099f-5316-11ed-a2eb-3c7c3f299a76': 'cd7205c0-5316-11ed-a2eb-3c7c3f299a76' // Admin
+    '8d906da9-1aab-11ee-aab2-3c7c3f299a76': 'af9c4c2d-1aab-11ee-aab2-3c7c3f299a76', // Felipe
+    '9be04e2f-1aab-11ee-aab2-3c7c3f299a76': '14e03311-21cc-11ee-88ae-ac1f6bbcd3b3' // Kaue
   }
 
   constructor(private localStorageService: LocalStorageService) {
@@ -20,14 +22,6 @@ export class AuthService {
     this.localStorageService.setBearerToken(token);
   }
 
-  getUserUuid(): string {
-    return this.localStorageService.getUserUuid();
-  }
-
-  setUserUuid(userUuid: string): void {
-    this.localStorageService.setUserUuid(userUuid);
-  }
-
   private clearAuthData(): void {
     this.localStorageService.clearAll();
   }
@@ -35,7 +29,6 @@ export class AuthService {
   loginAs(userUuid: string): void {
     if (AuthService.USER_TOKENS.hasOwnProperty(userUuid)) {
       this.setBearerToken(AuthService.USER_TOKENS[userUuid]);
-      this.setUserUuid(userUuid);
     }
   }
 
