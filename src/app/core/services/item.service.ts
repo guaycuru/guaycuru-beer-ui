@@ -20,18 +20,14 @@ export class ItemService {
     );
   }
 
-  getItem(uuid: string): Observable<Item> {
-    return this.http.get<ItemJSON>(this.config.apiBaseUrl + '/items/' + uuid).pipe(
-      map(res => Item.fromJSON(res)),
-      catchError(Errors.handleErrorResponse)
-    );
-  }
-
-  findItems(brandUuid: string): Observable<Item[]> {
+  findItems(brandUuid: string, storageUuid: string): Observable<Item[]> {
     const options: any = {};
     options.params = new HttpParams();
     if (brandUuid) {
       options.params = options.params.set('brand', brandUuid);
+    }
+    if (storageUuid) {
+      options.params = options.params.set('storage', storageUuid);
     }
     return this.http.get<ItemJSON[]>(this.config.apiBaseUrl + '/items/', options).pipe(
       map(res => res.map(json => Item.fromJSON(json))),
@@ -39,19 +35,22 @@ export class ItemService {
     );
   }
 
-  addItem(item: Item): Observable<Item> {
-    const body = item.toJSON();
-    return this.http.put<ItemJSON>(this.config.apiBaseUrl + '/items', body).pipe(
+  getItem(uuid: string): Observable<Item> {
+    return this.http.get<ItemJSON>(this.config.apiBaseUrl + '/items/' + uuid).pipe(
       map(res => Item.fromJSON(res)),
       catchError(Errors.handleErrorResponse)
     );
   }
 
-  refreshItem(uuid: string, force = false): Observable<Item> {
-    const options: any = {};
-    options.params = new HttpParams();
-    options.params = options.params.set('force', force);
-    return this.http.post<ItemJSON>(this.config.apiBaseUrl + '/items/' + uuid, null, options).pipe(
+  addItem(item: Item): Observable<Item> {
+    return this.http.post<ItemJSON>(this.config.apiBaseUrl + '/items', item.toJSON()).pipe(
+      map(res => Item.fromJSON(res)),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
+
+  updateItem(item: Item): Observable<Item> {
+    return this.http.put<ItemJSON>(this.config.apiBaseUrl + '/items/' + item.uuid, item.toJSON()).pipe(
       map(res => Item.fromJSON(res)),
       catchError(Errors.handleErrorResponse)
     );
