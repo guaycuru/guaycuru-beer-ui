@@ -1,6 +1,6 @@
 var CURRENT_CONFIG = {
-  "baseHostName": "localhost:4242",
-  "apiHostName": "guaybeer-api",
-  "apiBaseUrl": "http://guaybeer-api",
-  "debug": true
+  "baseHostName": "guaybeer.guaycuru.net",
+  "apiHostName": "api.guaybeer.guaycuru.net",
+  "apiBaseUrl": "https://api.guaybeer.guaycuru.net",
+  "debug": false
 };
