@@ -26,6 +26,20 @@ export class StorageService {
     );
   }
 
+  addStorage(storage: Storage): Observable<Storage> {
+    return this.http.post<StorageJSON>(this.config.apiBaseUrl + "/storages", storage.toJSON()).pipe(
+      map(res => Storage.fromJSON(res)),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
+
+  updateStorage(storage: Storage): Observable<Storage> {
+    return this.http.put<StorageJSON>(this.config.apiBaseUrl + "/storages/" + storage.uuid, storage.toJSON()).pipe(
+      map(res => Storage.fromJSON(res)),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
+
   deleteStorage(uuid: string): Observable<boolean> {
     return this.http.delete(this.config.apiBaseUrl + '/storages/' + uuid).pipe(
       map(() => true),

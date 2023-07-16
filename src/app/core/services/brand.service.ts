@@ -25,6 +25,20 @@ export class BrandService {
     );
   }
 
+  addBrand(brand: Brand): Observable<Brand> {
+    return this.http.post<BrandJSON>(this.config.apiBaseUrl + '/brands', brand.toJSON()).pipe(
+      map(res => Brand.fromJSON(res)),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
+
+  updateBrand(brand: Brand): Observable<Brand> {
+    return this.http.put<BrandJSON>(this.config.apiBaseUrl + '/brands/' + brand.uuid, brand.toJSON()).pipe(
+      map(res => Brand.fromJSON(res)),
+      catchError(Errors.handleErrorResponse)
+    );
+  }
+
   deleteBrand(uuid: string): Observable<boolean> {
     return this.http.delete(this.config.apiBaseUrl + '/brands/' + uuid).pipe(
       map(() => true),
