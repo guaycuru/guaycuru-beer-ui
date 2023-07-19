@@ -4,18 +4,18 @@ import { Storage, StorageJSON } from './storage.model';
 
 export abstract class ItemJSON {
   uuid: string;
-  name: string;
-  expiry: string;
   product: ProductJSON;
   storage: StorageJSON;
+  quantity: number;
+  expiry: string;
 }
 
 export class Item {
   uuid: string;
-  name: string;
-  expiry: DateTime;
   product: Product;
   storage: Storage;
+  quantity: number;
+  expiry: DateTime;
 
   static fromJSON(json: ItemJSON): Item {
     const entity = Object.create(Item.prototype);
