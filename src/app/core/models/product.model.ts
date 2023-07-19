@@ -18,7 +18,7 @@ export class Product {
     const entity = Object.create(Product.prototype);
     return Object.assign(entity, json, {
       brand: json.brand ? Brand.fromJSON(json.brand) : null,
-      tags: json.tags ? json.tags.map((tag) => Tag.fromJSON(tag)) : null
+      tags: json.tags?.map((tag) => Tag.fromJSON(tag)) ?? []
     });
   }
 
