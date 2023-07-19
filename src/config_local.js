@@ -1,4 +1,4 @@
-var CURRENT_CONFIG = {
+const CURRENT_CONFIG = {
   "baseHostName": "localhost:4242",
   "apiHostName": "guaybeer-api",
   "apiBaseUrl": "http://guaybeer-api",

@@ -1,6 +1,6 @@
-var CURRENT_CONFIG = {
-  "baseHostName": "guaybeer.guaycuru.net",
-  "apiHostName": "api.guaybeer.guaycuru.net",
-  "apiBaseUrl": "https://api.guaybeer.guaycuru.net",
+const CURRENT_CONFIG = {
+  "baseHostName": "guaycurubeer.com.br",
+  "apiHostName": "api.guaycurubeer.com.br",
+  "apiBaseUrl": "https://api.guaycurubeer.com.br",
   "debug": false
 };
