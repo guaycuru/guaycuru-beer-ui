@@ -1,69 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Guaycuru Beer Stock</title>
-  </head>
-  <body>
-    <section class="main-container">
-      <div class="container">
-        <table>
-          <thead>
-            <tr>
-              <th>Cerveja</th>
-              <th>Estilo</th>
-              <th>Quantidade</th>
-              <th>Local</th>
-              <th>Validade</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="col_cerveja">{{ cerveja }}</td>
-              <td class="col_estilo">{{ estilo }}</td>
-              <td class="col_qtd">{{ quantidade }}</td>
-              <td class="col_local">{{ local }}</td>
-              <td class="col_validade">{{ validade }}</td>
-              <td><button class="beber_button">Beber</button></td>
-            </tr>
-            <tr>
-              <td class="col_cerveja">{{ cerveja }}</td>
-              <td class="col_estilo">{{ estilo }}</td>
-              <td class="col_qtd">{{ quantidade }}</td>
-              <td class="col_local">{{ local }}</td>
-              <td class="col_validade">{{ validade }}</td>
-              <td><button class="beber_button">Beber</button></td>
-            </tr>
-            <tr>
-              <td class="col_cerveja">{{ cerveja }}</td>
-              <td class="col_estilo">{{ estilo }}</td>
-              <td class="col_qtd">{{ quantidade }}</td>
-              <td class="col_local">{{ local }}</td>
-              <td class="col_validade">{{ validade }}</td>
-              <td><button class="beber_button">Beber</button></td>
-            </tr>
-            <tr>
-              <td class="col_cerveja">{{ cerveja }}</td>
-              <td class="col_estilo">{{ estilo }}</td>
-              <td class="col_qtd">{{ quantidade }}</td>
-              <td class="col_local">{{ local }}</td>
-              <td class="col_validade">{{ validade }}</td>
-              <td><button class="beber_button">Beber</button></td>
-            </tr>
-            <tr>
-              <td class="col_cerveja">{{ cerveja }}</td>
-              <td class="col_estilo">{{ estilo }}</td>
-              <td class="col_qtd">{{ quantidade }}</td>
-              <td class="col_local">{{ local }}</td>
-              <td class="col_validade">{{ validade }}</td>
-              <td><button class="beber_button">Beber</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </body>
-</html>
+<section class="main-container">
+  <div class="container">
+    <table *ngIf="items">
+      <thead>
+        <tr>
+          <th>Marca</th>
+          <th>Cerveja</th>
+          <th>Estilo</th>
+          <th>Quantidade</th>
+          <th>Local</th>
+          <th>Validade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td class="col_marca">{{ item.product.brand.name }}</td>
+          <td class="col_cerveja">{{ item.product.name }}</td>
+          <td class="col_estilo">...</td>
+          <td class="col_qtd">{{ item.quantity }}</td>
+          <td class="col_local">{{ item.storage.name }}</td>
+          <td class="col_validade">{{ item.expiry }}</td>
+          <td><button class="beber_button">Beber</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

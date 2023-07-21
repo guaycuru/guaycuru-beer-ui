@@ -12,13 +12,17 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './core/services/auth-interceptor';
 import { SharedModule } from './shared/shared.module';
-import { HomeComponent } from './home/home.component';
 import { DebugInterceptor } from './core/services/debug-interceptor';
+import { StockTableComponent } from './components/stock-table/stock-table.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HeaderComponent,
+    HomeComponent,
+    StockTableComponent
   ],
   imports: [
     BrowserModule,

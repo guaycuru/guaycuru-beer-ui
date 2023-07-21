@@ -1,18 +1,2 @@
-<table *ngIf="items" style="border: 1px solid black">
-  <thead>
-    <tr>
-      <th style="border: 1px solid black">Marca</th>
-      <th style="border: 1px solid black">Produto</th>
-      <th style="border: 1px solid black">Quantidade</th>
-      <th style="border: 1px solid black">Armazenamento</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of items">
-      <td style="border: 1px solid black">{{item.product.brand.name}}</td>
-      <td style="border: 1px solid black">{{item.product.name}}</td>
-      <td style="border: 1px solid black">{{item.quantity}}</td>
-      <td style="border: 1px solid black">{{item.storage.name}}</td>
-    </tr>
-  </tbody>
-</table>
+<app-header></app-header>
+<router-outlet></router-outlet>
