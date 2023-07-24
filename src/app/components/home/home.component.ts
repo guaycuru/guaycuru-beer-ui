@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { ItemService } from '../core/services/item.service';
-import { Item } from '../core/models/item.model';
+import { ItemService } from '../../core/services/item.service';
+import { Item } from '../../core/models/item.model';
 
 @Component({
   templateUrl: './home.component.html'

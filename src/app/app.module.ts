@@ -15,7 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { DebugInterceptor } from './core/services/debug-interceptor';
 import { StockTableComponent } from './components/stock-table/stock-table.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
