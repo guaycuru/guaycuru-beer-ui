@@ -11,16 +11,16 @@ import { ItemService } from '../../core/services/item.service';
 export class StockTableComponent implements OnInit {
   items: Item[];
 
-  onBeberButtonClick(item: Item): void {
-    if (item.quantity > 0) {
-      item.reduceQuantity();
-    }
-  }
-
   constructor(private itemService: ItemService) {}
 
   ngOnInit(): void {
     void this.init();
+  }
+
+  onBeberButtonClick(item: Item): void {
+    if (item.quantity > 0) {
+      item.reduceQuantity();
+    }
   }
 
   private async init(): Promise<void> {
