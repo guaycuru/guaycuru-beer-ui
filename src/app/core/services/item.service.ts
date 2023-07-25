@@ -46,10 +46,9 @@ export class ItemService {
     );
   }
 
-  deleteItem(item: Item): Observable<boolean> {
-    return this.http.delete(this.config.apiBaseUrl + '/items/' + item.uuid).pipe(
-      map(() => true),
-      catchError(Errors.handleErrorResponse)
+  deleteItem(item: Item): Promise<boolean> {
+    return this.http.delete(this.config.apiBaseUrl + '/items/' + item.uuid).then(
+      () => true
     );
   }
 }
