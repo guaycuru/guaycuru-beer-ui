@@ -11,18 +11,6 @@ import { ItemService } from '../../core/services/item.service';
 export class StockTableComponent implements OnInit {
   items: Item[];
 
-  onBeberButtonClick(item: Item): void {
-    if (item.quantity > 0) {
-      item.reduceQuantity();
-    }
-  }
-
-  onAddButtonClick(item: Item): void {
-    if (item.quantity >= 0) {
-      item.addQuantity();
-    }
-  }
-
   constructor(private itemService: ItemService) {}
 
   ngOnInit(): void {
@@ -32,6 +20,12 @@ export class StockTableComponent implements OnInit {
   onBeberButtonClick(item: Item): void {
     if (item.quantity > 0) {
       item.reduceQuantity();
+    }
+  }
+
+  onAddButtonClick(item: Item): void {
+    if (item.quantity >= 0) {
+      item.addQuantity();
     }
   }
 
