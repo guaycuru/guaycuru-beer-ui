@@ -1,7 +1,6 @@
 import { DateTime } from 'luxon';
 import { Product, ProductJSON } from './product.model';
 import { Storage, StorageJSON } from './storage.model';
-import { format, parseISO } from 'date-fns';
 
 export abstract class ItemJSON {
   uuid: string;
@@ -21,7 +20,7 @@ export class Item {
   static fromJSON(json: ItemJSON): Item {
     const entity = Object.create(Item.prototype);
     return Object.assign(entity, json, {
-      expiry: json.expiry ? format(parseISO(json.expiry), 'dd/MM/yyyy') : null,
+      expiry: json.expiry ? DateTime.fromISO(json.expiry) : null,
       product: json.product ? Product.fromJSON(json.product) : null,
       storage: json.storage ? Storage.fromJSON(json.storage) : null
     });
@@ -39,5 +38,9 @@ export class Item {
     if (this.quantity > 0) {
       this.quantity--;
     }
+  }
+
+  get formattedExpiry(): string {
+    return this.expiry?.toFormat('dd/MM/yyyy') ?? '';
   }
 }
