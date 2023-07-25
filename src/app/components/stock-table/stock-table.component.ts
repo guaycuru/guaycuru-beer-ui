@@ -29,6 +29,12 @@ export class StockTableComponent implements OnInit {
     void this.init();
   }
 
+  onBeberButtonClick(item: Item): void {
+    if (item.quantity > 0) {
+      item.reduceQuantity();
+    }
+  }
+
   private async init(): Promise<void> {
     this.items = await firstValueFrom(this.itemService.listItems());
   }
