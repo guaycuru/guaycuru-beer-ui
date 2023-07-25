@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { firstValueFrom, Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { Errors } from '../models/errors.model';
 
 type BodyTypes = string | Object | FormData | ArrayBuffer | Blob | null;
 
@@ -12,27 +13,27 @@ export class AuthHttp {
   constructor(private auth: AuthService, private http: HttpClient) {
   }
 
-  get<R>(url: string, options?: any) : Observable<R> {
+  get<R>(url: string, options?: any) : Promise<R> {
     return this._request<R>('get', url, null, options);
   }
 
-  post<R>(url: string, body: BodyTypes, options?: any): Observable<R> {
+  post<R>(url: string, body: BodyTypes, options?: any): Promise<R> {
     return this._request<R>('post', url, body, options);
   }
 
-  put<R>(url: string, body: BodyTypes, options?: any): Observable<R> {
+  put<R>(url: string, body: BodyTypes, options?: any): Promise<R> {
     return this._request<R>('put', url, body, options);
   }
 
-  delete<R>(url: string, options?: any): Observable<R> {
+  delete<R>(url: string, options?: any): Promise<R> {
     return this._request<R>('delete', url, null, options);
   }
 
-  patch<R>(url: string, body: BodyTypes, options?: any): Observable<R> {
+  patch<R>(url: string, body: BodyTypes, options?: any): Promise<R> {
     return this._request<R>('patch', url, body, options);
   }
 
-  head<R>(url: string, options?: any): Observable<R> {
+  head<R>(url: string, options?: any): Promise<R> {
     return this._request<R>('head', url, null, options);
   }
 
@@ -54,12 +55,13 @@ export class AuthHttp {
     return httpOptions;
   }
 
-  _request<R>(method: string, url: string, body?: any, options?: any): Observable<R> {
+  _request<R>(method: string, url: string, body?: any, options?: any): Promise<R> {
     let response: Observable<HttpResponse<R>>;
     let httpOptions = this._craftHttpOptions(body, options);
     response = this.http.request<R>(method, url, httpOptions) as Observable<HttpResponse<R>>;
-    return response.pipe(
-      map(res => res.body as R)
-    );
+    return firstValueFrom(response.pipe(
+      map(res => res.body as R),
+      catchError(Errors.handleErrorResponse)
+    ));
   }
 }

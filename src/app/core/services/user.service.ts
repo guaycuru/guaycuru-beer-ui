@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, firstValueFrom, Observable, take } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { BehaviorSubject, filter, Observable, take } from 'rxjs';
 import { ConfigService } from './config.service';
 import { AuthHttp } from './http.service';
-import { Errors } from '../models/errors.model';
 import { User, UserJSON } from '../models/user.model';
 import { LocalStorageService } from './local-storage.service';
 
@@ -43,7 +41,7 @@ export class UserService {
 
   private async refreshCurrentUser(): Promise<void> {
     try {
-      const user = await firstValueFrom(this.getMe());
+      const user = await this.getMe();
       this.currentUserUuid = user.uuid;
       this.currentUser.next(user);
     } catch (error) {
@@ -51,21 +49,19 @@ export class UserService {
     }
   }
 
-  listUsers(): Observable<User[]> {
-    return this.http.get<UserJSON[]>(this.config.apiBaseUrl + "/users").pipe(
-      map(res => res.map(json => User.fromJSON(json))),
-      catchError(Errors.handleErrorResponse)
+  listUsers(): Promise<User[]> {
+    return this.http.get<UserJSON[]>(this.config.apiBaseUrl + "/users").then(
+      res => res.map(json => User.fromJSON(json))
     );
   }
 
-  getUser(uuid: string): Observable<User> {
-    return this.http.get<UserJSON>(this.config.apiBaseUrl + "/users/" + uuid).pipe(
-      map(res => User.fromJSON(res)),
-      catchError(Errors.handleErrorResponse)
+  getUser(uuid: string): Promise<User> {
+    return this.http.get<UserJSON>(this.config.apiBaseUrl + "/users/" + uuid).then(
+      res => User.fromJSON(res)
     );
   }
 
-  getMe(): Observable<User> {
+  getMe(): Promise<User> {
     return this.getUser('me');
   }
 

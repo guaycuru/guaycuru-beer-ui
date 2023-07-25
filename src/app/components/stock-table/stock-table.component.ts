@@ -36,6 +36,6 @@ export class StockTableComponent implements OnInit {
   }
 
   private async init(): Promise<void> {
-    this.items = await firstValueFrom(this.itemService.listItems());
+    this.items = await this.itemService.listItems();
   }
 }
