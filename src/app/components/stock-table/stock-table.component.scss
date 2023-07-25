@@ -113,11 +113,36 @@
   }
 }
 
+.add_item {
+  max-width: 1000px;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  background-color: v.$rosewood;
+  color: v.$orange-web;
+  cursor: pointer;
+  font-weight: 600;
+  &:hover {
+    color: white;
+    background-color: v.$orange-web;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.265);
+  }
+}
+
 .col_cerveja {
-  width: 30%;
+  width: 20%;
 }
 
 .col_estilo {
+  width: 30%;
+}
+
+.col_qtd {
+  font-weight: bold;
+  width: 10%;
+}
+
+.col_local {
   width: 30%;
 }
 

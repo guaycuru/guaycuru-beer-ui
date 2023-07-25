@@ -17,6 +17,12 @@ export class StockTableComponent implements OnInit {
     }
   }
 
+  onAddButtonClick(item: Item): void {
+    if (item.quantity >= 0) {
+      item.addQuantity();
+    }
+  }
+
   constructor(private itemService: ItemService) {}
 
   ngOnInit(): void {
