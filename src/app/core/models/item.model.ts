@@ -1,7 +1,6 @@
 import { DateTime } from 'luxon';
 import { Product, ProductJSON } from './product.model';
 import { Storage, StorageJSON } from './storage.model';
-import { format, parseISO } from 'date-fns';
 
 export abstract class ItemJSON {
   uuid: string;
