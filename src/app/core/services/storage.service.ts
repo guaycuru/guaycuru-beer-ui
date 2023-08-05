@@ -9,33 +9,28 @@ export class StorageService {
   constructor(private http: AuthHttp, private config: ConfigService) {
   }
 
-  listStorages(): Promise<Storage[]> {
-    return this.http.get<StorageJSON[]>(this.config.apiBaseUrl + "/storages").then(
-      res => res.map(json => Storage.fromJSON(json))
-    );
+  async listStorages(): Promise<Storage[]> {
+    let res = await this.http.get<StorageJSON[]>(this.config.apiBaseUrl + '/storages');
+    return res.map(json => Storage.fromJSON(json));
   }
 
-  getStorage(uuid: string): Promise<Storage> {
-    return this.http.get<StorageJSON>(this.config.apiBaseUrl + "/storages/" + uuid).then(
-      res => Storage.fromJSON(res)
-    );
+  async getStorage(uuid: string): Promise<Storage> {
+    let res = await this.http.get<StorageJSON>(this.config.apiBaseUrl + '/storages/' + uuid);
+    return Storage.fromJSON(res);
   }
 
-  addStorage(storage: Storage): Promise<Storage> {
-    return this.http.post<StorageJSON>(this.config.apiBaseUrl + "/storages", storage.toJSON()).then(
-      res => Storage.fromJSON(res)
-    );
+  async addStorage(storage: Storage): Promise<Storage> {
+    let res = await this.http.post<StorageJSON>(this.config.apiBaseUrl + '/storages', storage.toJSON());
+    return Storage.fromJSON(res);
   }
 
-  updateStorage(storage: Storage): Promise<Storage> {
-    return this.http.put<StorageJSON>(this.config.apiBaseUrl + "/storages/" + storage.uuid, storage.toJSON()).then(
-      res => Storage.fromJSON(res)
-    );
+  async updateStorage(storage: Storage): Promise<Storage> {
+    let res = await this.http.put<StorageJSON>(this.config.apiBaseUrl + '/storages/' + storage.uuid, storage.toJSON());
+    return Storage.fromJSON(res);
   }
 
-  deleteStorage(uuid: string): Promise<boolean> {
-    return this.http.delete(this.config.apiBaseUrl + '/storages/' + uuid).then(
-      () => true
-    );
+  async deleteStorage(uuid: string): Promise<boolean> {
+    await this.http.delete(this.config.apiBaseUrl + '/storages/' + uuid);
+    return true;
   }
 }

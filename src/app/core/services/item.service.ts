@@ -8,13 +8,12 @@ import { Item, ItemJSON } from '../models/item.model';
 export class ItemService {
   constructor(private http: AuthHttp, private config: ConfigService) {}
 
-  listItems(): Promise<Item[]> {
-    return this.http.get<ItemJSON[]>(this.config.apiBaseUrl + '/items').then(
-      res => res.map(json => Item.fromJSON(json))
-    );
+  async listItems(): Promise<Item[]> {
+    let res = await this.http.get<ItemJSON[]>(this.config.apiBaseUrl + '/items');
+    return res.map(json => Item.fromJSON(json));
   }
 
-  findItems(brandUuid: string, storageUuid: string): Promise<Item[]> {
+  async findItems(brandUuid: string, storageUuid: string): Promise<Item[]> {
     const options: any = {};
     options.params = new HttpParams();
     if (brandUuid) {
@@ -23,32 +22,27 @@ export class ItemService {
     if (storageUuid) {
       options.params = options.params.set('storage', storageUuid);
     }
-    return this.http.get<ItemJSON[]>(this.config.apiBaseUrl + '/items/', options).then(
-      res => res.map(json => Item.fromJSON(json))
-    );
+    let res = await this.http.get<ItemJSON[]>(this.config.apiBaseUrl + '/items/', options);
+    return res.map(json => Item.fromJSON(json));
   }
 
-  getItem(uuid: string): Promise<Item> {
-    return this.http.get<ItemJSON>(this.config.apiBaseUrl + '/items/' + uuid).then(
-      res => Item.fromJSON(res)
-    );
+  async getItem(uuid: string): Promise<Item> {
+    let res = await this.http.get<ItemJSON>(this.config.apiBaseUrl + '/items/' + uuid);
+    return Item.fromJSON(res);
   }
 
-  addItem(item: Item): Promise<Item> {
-    return this.http.post<ItemJSON>(this.config.apiBaseUrl + '/items', item.toJSON()).then(
-      res => Item.fromJSON(res)
-    );
+  async addItem(item: Item): Promise<Item> {
+    let res = await this.http.post<ItemJSON>(this.config.apiBaseUrl + '/items', item.toJSON());
+    return Item.fromJSON(res);
   }
 
-  updateItem(item: Item): Promise<Item> {
-    return this.http.put<ItemJSON>(this.config.apiBaseUrl + '/items/' + item.uuid, item.toJSON()).then(
-      res => Item.fromJSON(res)
-    );
+  async updateItem(item: Item): Promise<Item> {
+    let res = await this.http.put<ItemJSON>(this.config.apiBaseUrl + '/items/' + item.uuid, item.toJSON());
+    return Item.fromJSON(res);
   }
 
-  deleteItem(item: Item): Promise<boolean> {
-    return this.http.delete(this.config.apiBaseUrl + '/items/' + item.uuid).then(
-      () => true
-    );
+  async deleteItem(item: Item): Promise<boolean> {
+    await this.http.delete(this.config.apiBaseUrl + '/items/' + item.uuid);
+    return true;
   }
 }

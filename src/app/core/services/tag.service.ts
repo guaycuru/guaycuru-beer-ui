@@ -9,33 +9,28 @@ export class TagService {
   constructor(private http: AuthHttp, private config: ConfigService) {
   }
 
-  listTags(): Promise<Tag[]> {
-    return this.http.get<TagJSON[]>(this.config.apiBaseUrl + "/tags").then(
-      res => res.map(json => Tag.fromJSON(json))
-    );
+  async listTags(): Promise<Tag[]> {
+    let res = await this.http.get<TagJSON[]>(this.config.apiBaseUrl + '/tags');
+    return res.map(json => Tag.fromJSON(json));
   }
 
-  getTag(uuid: string): Promise<Tag> {
-    return this.http.get<TagJSON>(this.config.apiBaseUrl + "/tags/" + uuid).then(
-      res => Tag.fromJSON(res)
-    );
+  async getTag(uuid: string): Promise<Tag> {
+    let res = await this.http.get<TagJSON>(this.config.apiBaseUrl + '/tags/' + uuid);
+    return Tag.fromJSON(res);
   }
 
-  addTag(tag: Tag): Promise<Tag> {
-    return this.http.post<TagJSON>(this.config.apiBaseUrl + "/tags", tag.toJSON()).then(
-      res => Tag.fromJSON(res)
-    );
+  async addTag(tag: Tag): Promise<Tag> {
+    let res = await this.http.post<TagJSON>(this.config.apiBaseUrl + '/tags', tag.toJSON());
+    return Tag.fromJSON(res);
   }
 
-  updateTag(tag: Tag): Promise<Tag> {
-    return this.http.put<TagJSON>(this.config.apiBaseUrl + "/tags/" + tag.uuid, tag.toJSON()).then(
-      res => Tag.fromJSON(res)
-    );
+  async updateTag(tag: Tag): Promise<Tag> {
+    let res = await this.http.put<TagJSON>(this.config.apiBaseUrl + '/tags/' + tag.uuid, tag.toJSON());
+    return Tag.fromJSON(res);
   }
 
-  deleteTag(uuid: string): Promise<boolean> {
-    return this.http.delete(this.config.apiBaseUrl + '/tags/' + uuid).then(
-      () => true
-    );
+  async deleteTag(uuid: string): Promise<boolean> {
+    await this.http.delete(this.config.apiBaseUrl + '/tags/' + uuid);
+    return true;
   }
 }

@@ -5,9 +5,9 @@ export enum TagType {
   packaging
 }
 
-export const CustomLabelList = new ServerEnumList<TagType, EnumName<TagType>>(TagType, {
-  groupMember: new EnumName(TagType.style, 'style', 'Style'),
-  providerTool: new EnumName(TagType.packaging, 'packaging', 'Packaging'),
+export const TagTypeList = new ServerEnumList<TagType, EnumName<TagType>>(TagType, {
+  style: new EnumName(TagType.style, 'style', 'Style'),
+  packaging: new EnumName(TagType.packaging, 'packaging', 'Packaging'),
 });
 
 export abstract class TagJSON {

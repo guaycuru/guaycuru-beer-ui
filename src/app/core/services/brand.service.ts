@@ -8,33 +8,28 @@ export class BrandService {
   constructor(private http: AuthHttp, private config: ConfigService) {
   }
 
-  listBrands(): Promise<Brand[]> {
-    return this.http.get<BrandJSON[]>(this.config.apiBaseUrl + "/brands").then(
-      res => res.map(json => Brand.fromJSON(json))
-    );
+  async listBrands(): Promise<Brand[]> {
+    let res = await this.http.get<BrandJSON[]>(this.config.apiBaseUrl + '/brands');
+    return res.map(json => Brand.fromJSON(json));
   }
 
-  getBrand(uuid: string): Promise<Brand> {
-    return this.http.get<BrandJSON>(this.config.apiBaseUrl + '/brands/' + uuid).then(
-      res => Brand.fromJSON(res)
-    );
+  async getBrand(uuid: string): Promise<Brand> {
+    let res = await this.http.get<BrandJSON>(this.config.apiBaseUrl + '/brands/' + uuid);
+    return Brand.fromJSON(res);
   }
 
-  addBrand(brand: Brand): Promise<Brand> {
-    return this.http.post<BrandJSON>(this.config.apiBaseUrl + '/brands', brand.toJSON()).then(
-      res => Brand.fromJSON(res)
-    );
+  async addBrand(brand: Brand): Promise<Brand> {
+    let res = await this.http.post<BrandJSON>(this.config.apiBaseUrl + '/brands', brand.toJSON());
+    return Brand.fromJSON(res);
   }
 
-  updateBrand(brand: Brand): Promise<Brand> {
-    return this.http.put<BrandJSON>(this.config.apiBaseUrl + '/brands/' + brand.uuid, brand.toJSON()).then(
-      res => Brand.fromJSON(res)
-    );
+  async updateBrand(brand: Brand): Promise<Brand> {
+    let res = await this.http.put<BrandJSON>(this.config.apiBaseUrl + '/brands/' + brand.uuid, brand.toJSON());
+    return Brand.fromJSON(res);
   }
 
-  deleteBrand(uuid: string): Promise<boolean> {
-    return this.http.delete(this.config.apiBaseUrl + '/brands/' + uuid).then(
-      () => true
-    );
+  async deleteBrand(uuid: string): Promise<boolean> {
+    await this.http.delete(this.config.apiBaseUrl + '/brands/' + uuid);
+    return true;
   }
 }

@@ -49,16 +49,14 @@ export class UserService {
     }
   }
 
-  listUsers(): Promise<User[]> {
-    return this.http.get<UserJSON[]>(this.config.apiBaseUrl + "/users").then(
-      res => res.map(json => User.fromJSON(json))
-    );
+  async listUsers(): Promise<User[]> {
+    let res = await this.http.get<UserJSON[]>(this.config.apiBaseUrl + '/users');
+    return res.map(json => User.fromJSON(json));
   }
 
-  getUser(uuid: string): Promise<User> {
-    return this.http.get<UserJSON>(this.config.apiBaseUrl + "/users/" + uuid).then(
-      res => User.fromJSON(res)
-    );
+  async getUser(uuid: string): Promise<User> {
+    let res = await this.http.get<UserJSON>(this.config.apiBaseUrl + '/users/' + uuid);
+    return User.fromJSON(res);
   }
 
   getMe(): Promise<User> {

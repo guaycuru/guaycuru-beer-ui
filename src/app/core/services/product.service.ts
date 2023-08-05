@@ -9,21 +9,18 @@ export class ProductService {
   constructor(private http: AuthHttp, private config: ConfigService) {
   }
 
-  listProducts(): Promise<Product[]> {
-    return this.http.get<ProductJSON[]>(this.config.apiBaseUrl + "/products").then(
-      res => res.map(json => Product.fromJSON(json))
-    );
+  async listProducts(): Promise<Product[]> {
+    let res = await this.http.get<ProductJSON[]>(this.config.apiBaseUrl + '/products');
+    return res.map(json => Product.fromJSON(json));
   }
 
-  getProduct(uuid: string): Promise<Product> {
-    return this.http.get<ProductJSON>(this.config.apiBaseUrl + "/products/" + uuid).then(
-      res => Product.fromJSON(res)
-    );
+  async getProduct(uuid: string): Promise<Product> {
+    let res = await this.http.get<ProductJSON>(this.config.apiBaseUrl + '/products/' + uuid);
+    return Product.fromJSON(res);
   }
 
-  deleteProduct(uuid: string): Promise<boolean> {
-    return this.http.delete(this.config.apiBaseUrl + '/products/' + uuid).then(
-      () => true
-    );
+  async deleteProduct(uuid: string): Promise<boolean> {
+    await this.http.delete(this.config.apiBaseUrl + '/products/' + uuid);
+    return true;
   }
 }
