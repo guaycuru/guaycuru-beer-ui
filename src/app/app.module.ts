@@ -16,13 +16,15 @@ import { DebugInterceptor } from './core/services/debug-interceptor';
 import { StockTableComponent } from './components/stock-table/stock-table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { BeerFormComponent } from './components/beer-form/beer-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    StockTableComponent
+    StockTableComponent,
+    BeerFormComponent
   ],
   imports: [
     BrowserModule,

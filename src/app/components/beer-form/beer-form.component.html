@@ -1,0 +1,22 @@
+<div class="item-form">
+  <h2>Cadastrar nova Cerveja</h2>
+  <form (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="produto">Produto:</label>
+      <input type="text" id="produto" name="produto" [(ngModel)]="item.product.name" required>
+    </div>
+    <div class="form-group">
+      <label for="armazenamento">Armazenamento:</label>
+      <input type="text" id="armazenamento" name="armazenamento" [(ngModel)]="item.storage.name" required>
+    </div>
+    <div class="form-group">
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" id="quantidade" name="quantidade" [(ngModel)]="item.quantity" required>
+    </div>
+    <div class="form-group">
+      <label for="validade">Validade:</label>
+      <input type="date" id="validade" name="validade" [(ngModel)]="item.expiry" required>
+    </div>
+    <button type="submit">Adicionar ao Estoque</button>
+  </form>
+</div>
