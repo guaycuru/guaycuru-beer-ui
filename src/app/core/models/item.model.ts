@@ -28,7 +28,7 @@ export class Item {
 
   toJSON(): ItemJSON {
     return Object.assign({}, this, {
-      expiry: this.expiry?.toISO(),
+      expiry: this.expiry?.toISODate(),
       product: this.product?.toJSON(),
       storage: this.storage?.toJSON()
     });

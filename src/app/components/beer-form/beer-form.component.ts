@@ -1,5 +1,8 @@
+import { DateTime } from 'luxon';
 import { Component } from '@angular/core';
-import { Item } from 'src/app/core/models/item.model'; // Substitua pelo caminho correto para o seu Item model
+import { Item } from '../../core/models/item.model';
+import { ItemService } from '../../core/services/item.service';
+import { AlertService } from '../../core/services/alert.service';
 
 @Component({
   selector: 'app-beer-form',
@@ -7,14 +10,23 @@ import { Item } from 'src/app/core/models/item.model'; // Substitua pelo caminho
   styleUrls: ['./beer-form.component.scss']
 })
 export class BeerFormComponent {
-  item: Item = new Item(); // Use a classe Item em vez de Beer
+  item: Item = new Item();
+  expiryDate: string;
 
-  constructor() {}
+  constructor(
+    private itemService: ItemService,
+    private alertService: AlertService
+  ) {}
 
-  onSubmit() {
-    // Aqui você pode implementar a lógica para enviar os dados do item (cerveja) para o seu sistema de gerenciamento de estoque
-    console.log('Item (Cerveja) cadastrado:', this.item);
-    // Implemente a lógica de envio para o backend ou armazenamento local aqui
+  async onSubmit() {
+    try {
+      const response = await this.itemService.addItem(this.item);
+      console.log('Item adicionado ao estoque:', response);
+      this.alertService.success('Item adicionado ao estoque com sucesso!');
+      this.item = new Item(); // Limpa o formulário após a adição bem-sucedida
+    } catch (error) {
+      console.error('Erro ao adicionar item ao estoque:', error);
+      this.alertService.error('Erro ao adicionar item ao estoque', error);
+    }
   }
 }
-
