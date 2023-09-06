@@ -12,7 +12,10 @@ import { AlertService } from '../../core/services/alert.service';
 export class StockTableComponent implements OnInit {
   items: Item[];
 
-  constructor(private itemService: ItemService, private alertService: AlertService) {}
+  constructor(
+    private itemService: ItemService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     void this.init();
@@ -39,6 +42,24 @@ export class StockTableComponent implements OnInit {
       } catch (error) {
         this.alertService.error('Erro ao atualizar item', error);
       }
+    }
+  }
+
+  async moveItem(item: Item): Promise<void> {
+    try {
+      // Verifique a localização atual e defina a nova localização
+      if (item.storage.name === 'Geladeira') {
+        item.storage.name = 'Cristaleira';
+      } else if (item.storage.name === 'Cristaleira') {
+        item.storage.name = 'Geladeira';
+      }
+
+      // Atualize o item no banco de dados
+      await this.itemService.updateItem(item);
+
+      this.alertService.success('Item movido com sucesso!');
+    } catch (error) {
+      this.alertService.error('Erro ao mover item', error);
     }
   }
 

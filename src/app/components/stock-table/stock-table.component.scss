@@ -98,6 +98,22 @@
   }
 }
 
+.mover_button {
+  max-width: 50%;
+  margin: 15px;
+  padding: 0.2rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  background-color: v.$dark-orange-web;
+  cursor: pointer;
+  font-weight: 600;
+  &:hover {
+    color: white;
+    background-color: v.$alloy-orange;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.265);
+  }
+}
+
 .beber_button {
   max-width: 1000px;
   padding: 1rem 2rem;
@@ -150,4 +166,8 @@
   width: 20%;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.bold-text {
+  font-weight: bold;
 }

@@ -17,7 +17,16 @@
           <td class="col_cerveja">{{ item.product.name }}</td>
           <td class="col_estilo">...</td>
           <td class="col_qtd">{{ item.quantity }}</td>
-          <td class="col_local">{{ item.storage.name }}</td>
+          <td class="col_local">
+            <span
+              [ngClass]="{ 'bold-text': item.storage.name === 'Geladeira' }"
+            >
+              {{ item.storage.name }}
+            </span>
+            <button class="mover_button" (click)="moveItem(item)">
+              Mover
+            </button>
+          </td>
           <td class="col_validade">{{ item.formattedExpiry }}</td>
           <td>
             <button class="beber_button" (click)="onBeberButtonClick(item)">
