@@ -3,13 +3,19 @@
   <form (submit)="onSubmit()">
     <div class="form-group">
       <label for="produto">Produto:</label>
-      <input
-        type="text"
+      <select
         id="produto"
         name="produto"
-        [(ngModel)]="item.product"
+        [(ngModel)]="selectedProductName"
         required
-      />
+      >
+        <option value="" disabled selected>Selecione um produto</option>
+        <option
+          *ngFor="let productName of productNames"
+          [value]="productName"
+          >{{ productName }}</option
+        >
+      </select>
     </div>
     <div class="form-group">
       <label for="armazenamento">Armazenamento:</label>

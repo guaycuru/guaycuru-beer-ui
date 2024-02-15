@@ -34,6 +34,7 @@ export class Item {
     });
   }
 
+  
   addQuantity(): void {
     if (this.quantity >= 0) {
       this.quantity++;

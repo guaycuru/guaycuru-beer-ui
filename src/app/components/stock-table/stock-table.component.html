@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th>Marca</th>
-          <th>Cerveja</th>
+          <th>Tipo</th>
           <th>Estilo</th>
           <th>Quantidade</th>
           <th>Local</th>
@@ -23,21 +23,8 @@
             >
               {{ item.storage.name }}
             </span>
-            <button class="mover_button" (click)="moveItem(item)">
-              Mover
-            </button>
           </td>
           <td class="col_validade">{{ item.formattedExpiry }}</td>
-          <td>
-            <button class="beber_button" (click)="onBeberButtonClick(item)">
-              Beber
-            </button>
-          </td>
-          <td>
-            <button class="add_item" (click)="onAddButtonClick(item)">
-              +1
-            </button>
-          </td>
         </tr>
       </tbody>
     </table>
